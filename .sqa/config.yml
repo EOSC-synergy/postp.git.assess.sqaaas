@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp:
+      branch: master
+      repo: https://gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp git:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-taupe-bobcat.sh
+        container: qc.acc_greasy-plum-angora
+  QC.Doc:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-goldenrod-quokka.sh
+        container: qc.doc_muzzy-tan-corgi
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp git:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-cinnamon-raccoon.sh
+        container: qc.doc_scummy-saffron-birman
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.foggy-coral-skunk.sh
+        container: qc.doc_muggy-blue-tzu
+  QC.Lic:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.gloppy-mauve-barracuda.sh
+        container: qc.lic_slaphappy-azure-tiger
+  QC.Sec:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-alizarin-reindeer.sh
+        container: qc.sec_breezy-harlequin-devil
+  QC.Sty:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-cerise-hornet.sh
+        container: qc.sty_greasy-white-zonkey
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-carmine-newt.sh
+        container: qc.sty_homey-goldenrod-hummingbird
+  QC.Uni:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.muzzy-ecru-tuatara.sh
+        container: qc.uni_shaky-charcoal-burmese
+  QC.Ver:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/postp get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-cyan-budgerigar.sh
+        container: qc.ver_nerdy-grey-shrimp
+timeout: 5400
